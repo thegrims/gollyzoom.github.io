@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" maxlength="18" class="form-control" id="password" placeholder="password">
+                <input type="password" maxlength="50" class="form-control" id="password" placeholder="password">
             </div>
             <!--<div class="form-group">
                 <label for="grade">Grade in class:</label>
@@ -79,7 +79,7 @@
 
     </div>
     <script>
-        var ref = new Firebase("https://brouze.firebaseio.com");
+        var ref = new Firebase("https://testapp31415.firebaseio.com");
         var userData; //data.uid
         var parseQueryString = function() {
             var info;
@@ -105,6 +105,28 @@
             var password = $("#password").val();
             console.log(username);
             console.log(password);
+            setUp(username,password);
+        }
+        function setUp(username,password){
+            //var ref = new Firebase("https://testapp31415.firebaseio.com");
+            ref.createUser({
+              email    : username,
+              password : password
+            }, function(error, userData) {
+              if (error) {
+                console.log("Error creating user:", error);
+              } else {
+                console.log("Successfully created user account with uid:", userData.uid);
+                create(userData.uid,username);
+              }
+            });
+        }
+        function create(userData,email){
+            ref.child("users").child(userId).set({
+                basic:{
+                    email: email
+                }
+        }
             //var usersRef = ref.child("users")
             //var usernameRef = usersRef.child(userData);
             //var basicRef = usernameRef.child("basicInfo");
@@ -163,7 +185,7 @@
             });*/
             //classRef.child(temp).set(category);
             //redirect();
-        }
+       // }
         
          function redirect() {
              var secret = "username=" + userData + "&pageOwner="+userData;
