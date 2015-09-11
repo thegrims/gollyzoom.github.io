@@ -79,7 +79,7 @@
 
     </div>
     <script>
-        var ref = new Firebase("https://brouze.firebaseio.com");
+        var myFirebaseRef = new Firebase("https://testapp31415.firebaseio.com");
         var userData; //data.uid
         var parseQueryString = function() {
             var info;
@@ -105,6 +105,21 @@
             var password = $("#password").val();
             console.log(username);
             console.log(password);
+            create(username,password);
+        }
+        
+        function create(username,password){
+            myFirebaseRef.createUser({
+              email    : username,
+              password : password
+            }, function(error, userData) {
+              if (error) {
+                console.log("Error creating user:", error);
+              } else {
+                console.log("Successfully created user account with uid:", userData.uid);
+              }
+            });
+        }
             //var usersRef = ref.child("users")
             //var usernameRef = usersRef.child(userData);
             //var basicRef = usernameRef.child("basicInfo");
@@ -163,7 +178,7 @@
             });*/
             //classRef.child(temp).set(category);
             //redirect();
-        }
+        //}
         
          function redirect() {
              var secret = "username=" + userData + "&pageOwner="+userData;
