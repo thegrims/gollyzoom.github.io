@@ -109,6 +109,7 @@
         }
         
         function create(username,password){
+            console.log("i am called");
             myFirebaseRef.createUser({
               email    : username,
               password : password
@@ -117,9 +118,18 @@
                 console.log("Error creating user:", error);
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
+                finish(userData.uid,username);
               }
             });
         }
+        function finish(userID,username){
+            myFirebaseRef.child("users").child(userId).set({
+                basic:{
+                    email: username
+                }
+            })
+        }
+        
             //var usersRef = ref.child("users")
             //var usernameRef = usersRef.child(userData);
             //var basicRef = usernameRef.child("basicInfo");
