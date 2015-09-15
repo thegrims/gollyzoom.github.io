@@ -8,6 +8,10 @@ body {
   /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
 }
 
+#carousel{
+    width:auto;
+    height: auto;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
