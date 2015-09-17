@@ -115,6 +115,9 @@
             }, function(error, userData) {
               if (error) {
                 console.log("Error creating user:", error);
+                if(error = "The specified email address is already in use."){
+                    console.log("this account has already been created");
+                }
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 create(userData.uid,username);
