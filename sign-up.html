@@ -73,7 +73,7 @@
             <div class="form-group">
                 <button type="button" class="btn btn-primary round" onclick="accessInfo()">Sign Up</button>
                 <label> </label> 
-                <button type="button" class="btn btn-default round">Cancel</button>
+                <button type="button" class="btn btn-default round" onclick="clear()">Cancel</button>
             </div>
         </form>
 
@@ -131,6 +131,10 @@
                 }
             })
             window.location.href = "carousel.html";
+        }
+        function clear(){
+            $("#username").val('');
+            $("#password").val('');
         }
             //var usersRef = ref.child("users")
             //var usernameRef = usersRef.child(userData);
