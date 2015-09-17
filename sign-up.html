@@ -117,6 +117,7 @@
                 console.log("Error creating user:", error);
                 if(error = "The specified email address is already in use."){
                     console.log("this account has already been created");
+                    clear();
                 }
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
@@ -133,6 +134,7 @@
             window.location.href = "carousel.html";
         }
         function clear(){
+            console.log("we are about to clear");
             $("#username").val('');
             $("#password").val('');
         }
