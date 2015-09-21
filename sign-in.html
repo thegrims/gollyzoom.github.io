@@ -115,8 +115,8 @@
         }
         function setUp(username,password){
             ref.authWithPassword({
-              email    : "bobtony@firebase.com",
-              password : "correcthorsebatterystaple"
+              email    : username,
+              password : password
             }, function(error, authData) {
               if (error) {
                 console.log("Login Failed!", error);
