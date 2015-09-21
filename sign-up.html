@@ -115,26 +115,26 @@
         }
         function setUp(username,password){
             /*var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");*/
-            ref.authWithPassword({
+            ref.createUser({
               email    : username,
               password : password
-            }, function(error, authData) {
+            }, function(error, userData) {
               if (error) {
-                console.log("Login Failed!", error);
+                console.log("Error creating user:", error);
               } else {
-                console.log("Authenticated successfully with payload:", authData);
-                login(username,password);
+                console.log("Successfully created user account with uid:", userData.uid);
+                create(userData.uid,username);
               }
             });
             //var ref = new Firebase("https://testapp31415.firebaseio.com");
         }
-        function login(userData,email){
+        function create(userData,email){
             ref.child("users").child(userData).set({
                 basic:{
                     email: email
                 }
             })
-            window.location.href = "carousel.html";
+            /*window.location.href = "carousel.html";*/
         }
         function clear(){
             console.log("we are about to clear");
