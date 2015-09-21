@@ -122,7 +122,7 @@
                 console.log("Login Failed!", error);
               } else {
                 console.log("Authenticated successfully with payload:", authData);
-                logIn(userData.uid,username);
+                logIn(authData.uid,username);
               }
             });
             //var ref = new Firebase("https://testapp31415.firebaseio.com");
