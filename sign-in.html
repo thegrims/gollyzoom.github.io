@@ -114,30 +114,21 @@
             setUp(username,password);
         }
         function setUp(username,password){
-            //var ref = new Firebase("https://testapp31415.firebaseio.com");
-            ref.createUser({
-              email    : username,
-              password : password
-            }, function(error, userData) {
+            ref.authWithPassword({
+              email    : "bobtony@firebase.com",
+              password : "correcthorsebatterystaple"
+            }, function(error, authData) {
               if (error) {
-                console.log("Error creating user:", error);
-                if(error = "The specified email address is already in use."){
-                    console.log("this account has already been created");
-                    clear();
-                }
+                console.log("Login Failed!", error);
               } else {
-                console.log("Successfully created user account with uid:", userData.uid);
-                create(userData.uid,username);
+                console.log("Authenticated successfully with payload:", authData);
+                logIn(userData.uid,username);
               }
             });
+            //var ref = new Firebase("https://testapp31415.firebaseio.com");
         }
-        function create(userData,email){
-            ref.child("users").child(userData).set({
-                basic:{
-                    email: email
-                }
-            })
-            window.location.href = "carousel.html";
+        function logIn(userData,email){
+             console.log("okay so we logged in and " + userData);
         }
         function clear(){
             console.log("we are about to clear");
