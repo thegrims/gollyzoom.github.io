@@ -129,6 +129,8 @@
         }
         function logIn(userData,email){
              console.log("okay so we logged in and " + userData);
+             sessionStorage.setItem("userData", userData);
+             window.location.href = "profile.html";
         }
         function clear(){
             console.log("we are about to clear");
