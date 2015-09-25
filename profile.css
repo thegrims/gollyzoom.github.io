@@ -34,6 +34,13 @@ body {
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
+h1{
+    font-family: 'Libre Baskerville', cursive;
+}
+h3{
+    font-family: 'Architects Daughter', cursive;
+    text-align: center;
+}
 #splash {
     background-color:black; 
     background-size: cover;
