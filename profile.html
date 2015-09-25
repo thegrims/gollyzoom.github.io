@@ -89,7 +89,9 @@
 
         <div class="container-fluid">
             <div id="info" class="row">
-                
+                <div id="bg" class="container">
+                    <h4 id="email"></h4>
+                </div>
             </div>
         </div>
             <!--<h1>Teach or be taught</h1>
@@ -127,6 +129,17 @@
     <script>
         var thing = sessionStorage.getItem("userData");
         console.log("dude bro " + thing);
+        decorate();
+        function decorate(){
+            var basicRef = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/basic");
+            basicRef.on("value", function(snapshot) {
+                var currentUser = snapshot.val();
+                console.log(currentUser.email);
+                $("#email").text("email: " + currentUser.email);
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+        }
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

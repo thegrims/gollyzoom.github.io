@@ -42,6 +42,13 @@ h3{
     font-family: 'Architects Daughter', cursive;
     text-align: center;
 }
+
+h4{
+    font-family: 'Architects Daughter', bold;
+    text-align:left;
+    font-size: 30;
+    color: black;
+}
 #splash {
     background-color:black; 
     background-size: cover;
@@ -109,7 +116,14 @@ div{
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+#bg {
+    margin-bottom: 7vw;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10%;
+}
+#bg {
+    max-width: 40em;
+}
 .masthead-nav > li {
   display: inline-block;
 }
