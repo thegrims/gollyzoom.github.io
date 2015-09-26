@@ -12,13 +12,13 @@
     <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Libre+Baskerville' rel='stylesheet' type='text/css'>
 
-    <title>Profile</title>
+    <title>Settings</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Libre+Baskerville|Arvo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Nunito|Architects+Daughter' rel='stylesheet' type='text/css'>
     <link href="profile.css" rel="stylesheet">
     <style>
         #info{
@@ -48,10 +48,10 @@
               <h1 class="masthead-brand">Hike</h1>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Home</a></li>
                   <li><a href="#">Search</a></li>
                   <li><a href="#">Help</a></li>
-                  <li><a href="settings.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+                  <li class="active"><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
                 </ul>
               </nav>
             </div>
@@ -60,41 +60,25 @@
           </div>   
         <div class="container-fluid">
             <div id="splash" class="row">
-                <div class="col-md-12">
-                    <img id = profilePic padding=100px src = "img/nature-sky-sunset-sun.jpg" width="50px" height="50px"></img>
-                </div>
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    <h3>Add a hike</h3>
-                </div>
-                <div class="col-md-4">
-                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                    <h3>Find hikes</h3>
-                </div>
-                <div class="col-md-4">
-                    <a href="dashboard.html">
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                    <h3>See your hikes</h3>
-                    </a>
-                </div>
-                <!--<h1>
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    <b>Find hikes in your area.</b>
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                </h1>-->
-                
-                <!--<h2>Find tutors in your area</h2>
-                <a id="learn" type="button" class="btn btn-default btn-lg" href="#info"><b>FIND OUT MORE</b></a>-->
-
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div id="info" class="row">
                 <div id="bg" class="container">
-                    <h5 id="email"></h5>
-                    <h5 id="name"></h5>
-                    <h5 id="zip"></h5>
+                    <form role="form" class="form-signin">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" maxlength="50" class="form-control" id="email" placeholder="" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" maxlength="50" class="form-control" id="name" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zipcode:</label>
+                            <input type="text" maxlength="5" class="form-control" id="zip" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary round" onclick="accessInfo()">Save</button>
+                            <label> </label> <a class="btn btn-default round" href="profile.html">Cancel</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -139,16 +123,25 @@
             basicRef.on("value", function(snapshot) {
                 var currentUser = snapshot.val();
                 console.log(currentUser.email);
-                $("#email").text("email: " + currentUser.email);
+                $("#email").val(currentUser.email);
                 if(currentUser.name != 'undefined'){
-                    $("#name").text("name: " + currentUser.name);
+                     $("#name").val(currentUser.name);
                 }
                 if(currentUser.zip != 'undefined'){
-                    $("#zip").text("zip: " + currentUser.zip);
+                     $("#zip").val(currentUser.zip);
                 }
+                //$("#style").text(currentUser.name);
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
+        }
+        function accessInfo(){
+            var basicRef = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/basic");
+            basicRef.update({
+              "name": $("#name").val(),
+              "zip": $("#zip").val()
+            });
+            window.location.href = "profile.html";
         }
     </script>
     <!-- Bootstrap core JavaScript
