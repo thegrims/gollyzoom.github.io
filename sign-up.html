@@ -50,11 +50,11 @@
     <div id="bg" class="container">
         <h2>Hello, new user</h2>
         <form role="form" onsubmit="accessInfo()" class="form-signin">
-            <div class="form-group">
+            <div class="form-group" id='information'>
                 <label for="username">Email:</label>
                 <input type="text" maxlength="50" class="form-control" id="username" placeholder="username" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id='information2'>
                 <label for="password">Password:</label>
                 <input type="password" maxlength="50" class="form-control" id="password" placeholder="password" required>
             </div>
@@ -121,6 +121,8 @@
             }, function(error, userData) {
               if (error) {
                 console.log("Error creating user:", error);
+                $("#information").addClass("has-error");
+                $("#information2").addClass("has-error");
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 create(userData.uid,username);
@@ -134,7 +136,8 @@
                     email: email
                 }
             })
-            /*window.location.href = "carousel.html";*/
+            sessionStorage.setItem("userData", userData);
+            window.location.href = "profile.html";
         }
         function clear(){
             console.log("we are about to clear");

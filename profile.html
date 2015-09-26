@@ -140,10 +140,10 @@
                 var currentUser = snapshot.val();
                 console.log(currentUser.email);
                 $("#email").text("email: " + currentUser.email);
-                if(currentUser.name != 'undefined'){
+                if((currentUser.name != 'undefined')&& (currentUser.name !='')){
                     $("#name").text("name: " + currentUser.name);
                 }
-                if(currentUser.zip != 'undefined'){
+                if((currentUser.zip != 'undefined')&& (currentUser.zip !='')){
                     $("#zip").text("zip: " + currentUser.zip);
                 }
             }, function(errorObject) {
