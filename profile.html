@@ -146,6 +146,9 @@
                 if((currentUser.zip != 'undefined')&& (currentUser.zip !='')){
                     $("#zip").text("zip: " + currentUser.zip);
                 }
+                if((currentUser.proPic != 'undefined')&& (currentUser.proPic !='')){
+                    $("#profilePic").attr('src', currentUser.proPic);
+                }
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });

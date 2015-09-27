@@ -75,6 +75,10 @@
                             <input type="text" maxlength="5" class="form-control" id="zip" placeholder="" required>
                         </div>
                         <div class="form-group">
+                            <label for="proPic">Profile Picture URL:</label>
+                            <input type="text" maxlength="100" class="form-control" id="proPic" placeholder="" required>
+                        </div>
+                        <div class="form-group">
                             <button type="button" class="btn btn-primary round" onclick="accessInfo()">Save</button>
                             <label> </label> <a class="btn btn-default round" href="profile.html">Cancel</a>
                         </div>
@@ -130,6 +134,9 @@
                 if(currentUser.zip != 'undefined'){
                      $("#zip").val(currentUser.zip);
                 }
+                if(currentUser.proPic != 'undefined'){
+                     $("#proPic").val(currentUser.proPic);
+                }
                 //$("#style").text(currentUser.name);
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
@@ -139,7 +146,8 @@
             var basicRef = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/basic");
             basicRef.update({
               "name": $("#name").val(),
-              "zip": $("#zip").val()
+              "zip": $("#zip").val(),
+              "proPic":$("#proPic").val()
             });
             window.location.href = "profile.html";
         }
