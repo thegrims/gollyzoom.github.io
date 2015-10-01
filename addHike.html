@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <title>Brouze | New User</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="addHike.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:700|Inconsolata' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <style>
+        body {
+            background-image: url(../gollyzoom.github.io/img/sky-clouds-field-blue.jpg);
+            margin-left: 8vw;
+            margin-right: 8vw;
+            width: auto;
+        }
+        
+         #bg{
+            margin-bottom: 7vw;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 2%
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="bg" class="container">
+  <h2>Create a Hike</h2>
+  <p>To add a hike, fill in the form below.</p>
+  <form role="form" onsubmit="accessInfo()">
+    <div class="form-group">
+      <label for="location">Hike location (by state):</label>
+      <input type="text" class="form-control" id="location" placeholder="Oregon">
+    </div>
+    <div class="form-group">
+      <label for="zip">Hike location (by zipcode):</label>
+      <input type="text" class="form-control" id="zip" placeholder="97219" maxlength=5>
+    </div>
+    <div class="form-group">
+       <label for="type">Type of Hike:</label>
+       <select class="form-control" id="type">
+          <option>Light</option>
+          <option>Moderate</option>
+          <option>Difficult</option>
+          <option>Extreme</option>
+          <option>Other</option>
+       </select>
+    </div>
+    <div class="form-group">
+      <label for="trail">Trail Name:</label>
+      <input type="text" class="form-control" id="trail" placeholder="" >
+    </div>
+    <div class="form-group">
+      <label for="comment">Comments (optional):</label>
+      <textarea class="form-control" rows="5" id="comment" placeholder="Any additional information you would like to share"></textarea>
+    </div>
+    <div class="form-group"> 
+      <button type="button" class="btn btn-primary" onclick="newHike()">Submit</button>
+      <button type="button" class="btn btn-default" onclick="home()">Cancel</button>
+    </div>
+  </form>
+  
+</div>
+<script>
+        var ref = new Firebase("https://testapp31415.firebaseio.com");
+        var thing = sessionStorage.getItem("userData"); 
+        var hikeRef = ref.child("hikes");
+        function newHike(){
+            hikeRef.push({
+              leader: thing,
+              state: $("#location").val(),
+              zip: $("#zip").val(),
+              trail: $("#trail").val(),
+              type: $("#type").val(),
+              comment: $("#comment").val(),
+            });
+            home();
+        }
+        function home(){
+            window.location.href = "profile.html";
+        }
+</script>
+</body>
+</html>
