@@ -89,14 +89,21 @@
         var ref = new Firebase("https://testapp31415.firebaseio.com");
         var thing = sessionStorage.getItem("userData"); 
         var hikeRef = ref.child("hikes");
+        var userRef = ref.child("users").child(thing);
+        var hikeData;
         function newHike(){
-            hikeRef.push({
+            var newHike = hikeRef.push({
               leader: thing,
               state: $("#location").val(),
               zip: $("#zip").val(),
               trail: $("#trail").val(),
               type: $("#type").val(),
-              comment: $("#comment").val(),
+              comment: $("#comment").val()
+            });
+            hikeData = newHike.key();
+            console.log("hikeData: " + hikeData);
+            userRef.child("hikes").child(hikeData).set({
+              type: "leader"
             });
             home();
         }
