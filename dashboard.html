@@ -16,13 +16,14 @@
     
     <script src="Chart.js-master/src/Chart.Core.js"></script>
     <script src="Chart.js-master/src/Chart.Doughnut.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="bootstrap-3.3.5-dist/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -42,14 +43,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Hkr</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="addHike.html">New Hike</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="carousel.html">Carousel</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -57,7 +58,7 @@
         </div>
       </div>
     </nav>
-
+    <!--
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -80,8 +81,9 @@
             <li><a href="">Another nav item</a></li>
           </ul>
         </div>
+        -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header">Hike Data</h1>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -101,11 +103,30 @@
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
               <div class="canvas-holder"><canvas id="chart4" width="100" height="100"></canvas></div>
-              <h4>Label</h4>
+              <h4>Length of Hike</h4>
               <span class="text-muted">Something else</span>
             </div>
           </div>
+        <button type="button" class="btn btn-primary" onClick="searchHike()">Add</button>
+          <div id="tutorTable" class="table-responsive">
+                <table class="table" id="canTutorTable">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Teacher</th>
+                            <th>Year Taken</th>
+                            <th>Grade/Score</th>
+                            <th>AP/SAT/ACT</th>
+                            <th>$/hour</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
+                    </tbody>
+                </table>
+           </div>
+            
           <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -119,118 +140,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -278,6 +188,80 @@
 				window.myDoughnut4 = new Chart(ctx3).Doughnut(doughnutData, {animationSteps : 105,responsive : true});
 			};
         myDoughnut.resize();
+        function searchHike()
+        {
+            var userId = sessionStorage.getItem("userData");
+            var ref = new Firebase("https://testapp31415.firebaseio.com/users/"+userId+"/hikes");
+            ref.once("value", function(snapshot) {
+              // The callback function will get called twice, once for "fred" and once for "barney"
+              snapshot.forEach(function(childSnapshot) {
+                // key will be "fred" the first time and "barney" the second time
+                var key = childSnapshot.key();
+                specificHike(key);
+              });
+            });
+        }
+        function specificHike(key)
+        {
+            var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
+            hikeRef.on("value", function(snapshot) {
+              var hikeNode = (snapshot.val());
+            console.log(hikeNode.zip);
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+        }
+        /*
+        function addRow() {
+            var i;
+            console.log("Attempting to append");
+            //$('#canTutorTable tr:last').after('<tr><td>hello</td><td>world</td></tr>');
+            var skillsRef = new Firebase("https://brouze.firebaseio.com/users/" + data + "/skills"); //we are looking at the skills of the specific user
+            skillsRef.once("value", function(snapshot) {
+                // The callback function will get once for each class
+                snapshot.forEach(function(childSnapshot) {
+                    rowData++;//number of skills
+                    // key will be the name of the class they are taking 
+                    var key = childSnapshot.key();
+                    var betterKey = key.replace(/ /g, "%20")
+                    //console.log("there is a better key " + betterKey);
+                    // childData will be the actual contents of the child
+                    var childData = childSnapshot.val();
+                    //var category= childData.category;
+                    var price = childData.pay;
+                    var teacher = childData.teacher;
+                    var yearTaken = childData.year;
+                    var comments = childData.comment;
+                    var grade = childData.grade;
+                    var AP = childData.AP;
+                    if(AP == ''){
+                       AP = 'NA';
+                    }
+                    var SAT = childData.SAT;
+                    if(SAT == ''){
+                       SAT = 'NA';
+                    }
+                    var ACT = childData.ACT;
+                    if(ACT == ''){
+                       ACT = 'NA';
+                    }
+                    $('#canTutorTable tr:last').after('<tr id='+betterKey+'><td id=key>' + key + '</td><td id=teacher>' + teacher + '</td><td id=year>' + yearTaken + '</td><td id=grade>' + grade + '</td><td id=AP>' + AP+"/"+SAT+"/" +ACT+'</td><td id=pay>$' + price + '</td><td id= comment>' + comments + '</td><td></tr>');
+                    if (match) {
+                       $('#canTutorTable td:last').after('<td id=penButton><a onclick="alertFunc(this)" id="' + key + '"><span class="glyphicon glyphicon-pencil deleteButton" aria-hidden="true"></span></a></td>'); 
+                       $('#canTutorTable td:last').after('<td id=trashButton><a onclick="deleteStrength(this)" id="' + key + '"><span class="glyphicon glyphicon-trash deleteButton" aria-hidden="true"></span></a></td>');
+                    }
+                    /*$("#"+key).click(function(){
+                        console.log("key what's up ");
+                           // window.document.location = $(this).data("href");
+                    });*/
+                    /*$("#canTutorTable").on('click', '#'+key, function(){
+                            var status = $(this).attr('id');
+                            console.log(status);
+                            //console.log(miniKey);
+                            //console.log(miniKey.ID);
+                             //window.location.replace("profile.html?" + "username=" + miniKey + "&pageOwner="+userData);
+                    });*/
+        
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
