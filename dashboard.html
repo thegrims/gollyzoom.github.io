@@ -82,7 +82,7 @@
           </ul>
         </div>
         -->
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
           <h1 class="page-header">Hike Data</h1>
 
           <div class="row placeholders">
@@ -159,6 +159,7 @@
 
 			window.onload = function()
             {
+                searchHike();
                 
 				var ctx = document.getElementById("chart1").getContext("2d");
 				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {animationSteps : 90,responsive : true});
@@ -169,7 +170,6 @@
                 var ctx3 = document.getElementById("chart4").getContext("2d");
 				window.myDoughnut4 = new Chart(ctx3).Doughnut(doughnutData, {animationSteps : 105,responsive : true});
                 
-                searchHike();
 			};
         //myDoughnut.resize();
         function searchHike()
