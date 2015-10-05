@@ -113,12 +113,12 @@
             <table class="table table-striped" id="canHikeTable">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th> 
+                  <th>User-Id</th>
+                  <th>State</th>
+                  <th>Zip Code</th>
+                  <th>Trail</th>
+                  <th>Difficulty</th>
+                  <th>comments</th> 
                 </tr>
               </thead>
               <tbody>
@@ -187,65 +187,14 @@
         {
             var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
             hikeRef.on("value", function(snapshot) {
-              var hikeNode = (snapshot.val());
-            console.log(hikeNode.zip);
-            console.log(hikeNode.type);
+            var hikeNode = (snapshot.val());
+                
             $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leader + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>' + hikeNode.comment + '</td><td></tr>');
+                
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
         }
-        /*
-        function addRow() {
-            var i;
-            console.log("Attempting to append");
-            //$('#canTutorTable tr:last').after('<tr><td>hello</td><td>world</td></tr>');
-            var skillsRef = new Firebase("https://brouze.firebaseio.com/users/" + data + "/skills"); //we are looking at the skills of the specific user
-            skillsRef.once("value", function(snapshot) {
-                // The callback function will get once for each class
-                snapshot.forEach(function(childSnapshot) {
-                    rowData++;//number of skills
-                    // key will be the name of the class they are taking 
-                    var key = childSnapshot.key();
-                    var betterKey = key.replace(/ /g, "%20")
-                    //console.log("there is a better key " + betterKey);
-                    // childData will be the actual contents of the child
-                    var childData = childSnapshot.val();
-                    //var category= childData.category;
-                    var price = childData.pay;
-                    var teacher = childData.teacher;
-                    var yearTaken = childData.year;
-                    var comments = childData.comment;
-                    var grade = childData.grade;
-                    var AP = childData.AP;
-                    if(AP == ''){
-                       AP = 'NA';
-                    }
-                    var SAT = childData.SAT;
-                    if(SAT == ''){
-                       SAT = 'NA';
-                    }
-                    var ACT = childData.ACT;
-                    if(ACT == ''){
-                       ACT = 'NA';
-                    }
-                    $('#canTutorTable tr:last').after('<tr id='+betterKey+'><td id=key>' + key + '</td><td id=teacher>' + teacher + '</td><td id=year>' + yearTaken + '</td><td id=grade>' + grade + '</td><td id=AP>' + AP+"/"+SAT+"/" +ACT+'</td><td id=pay>$' + price + '</td><td id= comment>' + comments + '</td><td></tr>');
-                    if (match) {
-                       $('#canTutorTable td:last').after('<td id=penButton><a onclick="alertFunc(this)" id="' + key + '"><span class="glyphicon glyphicon-pencil deleteButton" aria-hidden="true"></span></a></td>'); 
-                       $('#canTutorTable td:last').after('<td id=trashButton><a onclick="deleteStrength(this)" id="' + key + '"><span class="glyphicon glyphicon-trash deleteButton" aria-hidden="true"></span></a></td>');
-                    }
-                    /*$("#"+key).click(function(){
-                        console.log("key what's up ");
-                           // window.document.location = $(this).data("href");
-                    });*/
-                    /*$("#canTutorTable").on('click', '#'+key, function(){
-                            var status = $(this).attr('id');
-                            console.log(status);
-                            //console.log(miniKey);
-                            //console.log(miniKey.ID);
-                             //window.location.replace("profile.html?" + "username=" + miniKey + "&pageOwner="+userData);
-                    });*/
-        
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
