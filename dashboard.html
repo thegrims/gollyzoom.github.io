@@ -107,7 +107,6 @@
               <span class="text-muted">Something else</span>
             </div>
           </div>
-        <button type="button" class="btn btn-primary" onClick="searchHike()">Add</button>
           <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">
             <table class="table table-striped" id="canHikeTable">
@@ -160,6 +159,7 @@
 
 			window.onload = function()
             {
+                
 				var ctx = document.getElementById("chart1").getContext("2d");
 				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {animationSteps : 90,responsive : true});
                 var ctx1 = document.getElementById("chart2").getContext("2d");
@@ -168,6 +168,8 @@
 				window.myDoughnut3 = new Chart(ctx2).Doughnut(doughnutData, {animationSteps : 100,responsive : true});
                 var ctx3 = document.getElementById("chart4").getContext("2d");
 				window.myDoughnut4 = new Chart(ctx3).Doughnut(doughnutData, {animationSteps : 105,responsive : true});
+                
+                searchHike();
 			};
         //myDoughnut.resize();
         function searchHike()
