@@ -18,7 +18,17 @@ h6 {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
-
+p{
+    color: ghostwhite;
+}
+h3{
+    color: ghostwhite;
+    font-family:inherit;
+}
+label{
+    color: black;
+    font-family:Nunito;
+}
 .topnav {
     font-size: 14px;
 }
@@ -27,7 +37,14 @@ h6 {
     font-size: 18px;
     font-weight: 400;
 }
-
+.btn-primary{
+    background-color: black;
+    border-color: black;
+}
+.btn-warning{
+    background-color: orangered;
+    border-color: black;
+}
 .intro-header {
     padding-top: 50px;
     /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
@@ -195,15 +212,16 @@ td {
 
 .mini-profile {
     width: auto;
-    background-color:papayawhip;
+    background-color: rgba(143,36,0,.8);
+    box-shadow: 0 0 2px 5px rgba(143,36,0,.8);
     position: relative;
     margin-top: 20px;
     padding: 2% 6% 2% 4%;
-    border-radius: 5px;
+    border-radius:10px;
 }
 
 .mini-profile h2 {
-    color: black;
+    color:floralwhite;
     font-size: 3em;
 }
 
@@ -211,13 +229,13 @@ td {
     margin-top: -2%;
     font-weight: 400;
     font-size: 1.5em;
-    color: black;
+    color: floralwhite;
 }
 
 .mini-profile h4 {
     font-size: 1.2em;
     font-weight: 400;
-    color: black;
+    color: floralwhite;
 }
 
 #mini-pic {
@@ -272,7 +290,8 @@ td {
     color:darkgreen;
 }
 .well {
-    background-image: url(../img/forest.jpg);
+    background-image: url(../gollyzoom.github.io/img/fire-cooking-outdoors-camping.jpg);
+    border-color: black;
 }
 #two.well{
     background-image: url(../img/flowers-crop.jpg);

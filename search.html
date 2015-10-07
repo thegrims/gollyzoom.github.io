@@ -11,6 +11,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Nunito|Pacifico' rel='stylesheet' type='text/css'>
 
     <title>Find Hikes</title>
 
@@ -47,23 +48,6 @@
             <div class="row">
                 <div class="col-lg-3">
                     <h3></h3>
-                    <div class="well" id="two">
-                        <h3>Search Specific User</h3>
-                        <form>
-                            <!--<div class="form-group">
-                                <label>Search by Name:</label>
-                                <input type="text" class="form-control" id="searchIDname">
-                            </div>-->
-                            <div class="form-group">
-                                <label>Search Username:</label>
-                                <input type="text" class="form-control" id="searchID">
-                            </div>
-                            <div class="form-group"> 
-                              <button type="button" class="btn btn-primary">Filter</button>
-                              <button type="button" class="btn btn-warning">Remove Filter</button>
-                            </div>
-                        </form>
-                    </div>
                     <div class="well">
                         <h3>Refine Search</h3>
                         <form>
@@ -121,27 +105,38 @@
                     </div>
                 </div>
                 <div class="col-lg-9" id="miniList">
-                   <div class="container mini-profile">
-                        <div class="row">
-                            <div class="col-md-4">
-                            <h2>John Doe</h2>
-                            <h3>Junior at Piedmont High</h3>
-                            <h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</h4>
-                            </div>
-                            <div class="col-md-4">
-                               <img class="img-responsive" src="img/designer-board-typo-word.jpg" id="mini-pic">
-                            </div>
-                            <div class="col-md-4">
-                                <h2>John Doe</h2>
-                                <h3>Junior at Piedmont High</h3>
-                                <h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</h4>
-                            </div>
-                        </div>
-
-
-
-                    </div>
                 </div>
             </div>
         </div>
+    <script>
+        var thing = sessionStorage.getItem("userData");
+        countHike();
+        function countHike(){
+            var ref = new Firebase("https://testapp31415.firebaseio.com/hikes");
+            ref.once("value", function(snapshot) {
+              // The callback function will get called twice, once for "fred" and once for "barney"
+              snapshot.forEach(function(childSnapshot) {
+                var key = childSnapshot.key();
+                  addMini(key);
+              });
+            });
+        }
+        function addMini(miniKey){
+            console.log("xox 4");
+            var ref = new Firebase("https://testapp31415.firebaseio.com/hikes/" + miniKey);
+            ref.on("value", function(snapshot) {
+                var currentUser = snapshot.val();
+                var state = currentUser.state;
+                var zipcode = currentUser.zip;
+                var trail = currentUser.trail;
+                var type = currentUser.type;
+                var comment = currentUser.comment;
+                var leader = currentUser.leaderName;
+               // checkIfFave(miniKey,username);
+                $("#miniList").append('<div class="container mini-profile"  id='+miniKey+'><div class="row"><div class="col-md-4"><h2>'+trail+'</h2><h3>'+zipcode+'</h3><h4>'+comment+'</h4></div><div class="col-md-4"><img class="img-responsive" src="img/designer-board-typo-word.jpg" id="mini-pic"></div><div class="col-md-4"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                //apply_click(miniKey,results);
+            });
+        }
+
+    </script>
     </body>

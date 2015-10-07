@@ -88,12 +88,23 @@
 <script>
         var ref = new Firebase("https://testapp31415.firebaseio.com");
         var thing = sessionStorage.getItem("userData"); 
+        var name;
+        var thingRef = new Firebase("https://testapp31415.firebaseio.com/users/"+thing+"/basic");
+        thingRef.on("value", function(snapshot) {
+          console.log(snapshot.val());
+          snap = snapshot.val();
+          name = snap.name;
+          console.log(name);
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
         var hikeRef = ref.child("hikes");
         var userRef = ref.child("users").child(thing);
         var hikeData;
         function newHike(){
             var newHike = hikeRef.push({
               leader: thing,
+              leaderName: name,
               state: $("#location").val(),
               zip: $("#zip").val(),
               trail: $("#trail").val(),
