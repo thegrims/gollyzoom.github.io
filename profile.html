@@ -109,18 +109,25 @@
                     
             </div>
         </div>
+        <!-- google maps script -->
         <script>
         var map;
         function initMap() {
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
           map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 45.5200, lng:  -122.6819},
-            zoom: 12
+            zoom: 14
           });
+        directionsDisplay.setMap(map);
+        //var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
         }
     </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UjvGISTt2Ag7TwvlWwrNcXv80k94t74&callback=initMap">
         </script>
+        
             <!--<h1>Teach or be taught</h1>
             <hr>
             <p>At <b>Brouze</b>, our mission is to make it easier for those who need academic help. With our website, students can look up tutors by school or area code. This allows students to be taught by tutors who have experienced the same courses and teachers.</p>

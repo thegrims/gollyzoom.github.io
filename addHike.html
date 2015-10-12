@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -121,5 +122,62 @@
             window.location.href = "profile.html";
         }
 </script>
+    
+    <!-- Google Maps Stuff -->
+    
+    <div id="map"></div>
+    <div id="right-panel">
+      <p>Total Distance: <span id="total"></span></p>
+    </div>
+    <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: {lat: -24.345, lng: 134.46}  // Australia.
+  });
+
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+    draggable: true,
+    map: map,
+    panel: document.getElementById('right-panel')
+  });
+
+  directionsDisplay.addListener('directions_changed', function() {
+    computeTotalDistance(directionsDisplay.getDirections());
+  });
+
+  displayRoute('11548 sw 37th ave', '1151 SW Vermont St, Portland, OR 97219', directionsService,
+      directionsDisplay);
+}
+
+function displayRoute(origin, destination, service, display) {
+  service.route({
+    origin: origin,
+    destination: destination,
+    //waypoints: [{location: 'Cocklebiddy, WA'}, {location: 'Broken Hill, NSW'}],
+    travelMode: google.maps.TravelMode.DRIVING,
+    avoidTolls: true
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      display.setDirections(response);
+    } else {
+      alert('Could not display directions due to: ' + status);
+    }
+  });
+}
+
+function computeTotalDistance(result) {
+  var total = 0;
+  var myroute = result.routes[0];
+  for (var i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
+  }
+  total = total / 1000;
+  document.getElementById('total').innerHTML = total + ' km';
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UjvGISTt2Ag7TwvlWwrNcXv80k94t74&signed_in=true&callback=initMap"
+        async defer></script>
 </body>
 </html>
