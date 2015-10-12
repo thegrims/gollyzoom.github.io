@@ -80,6 +80,19 @@ h5{
     margin-right: -15px;
     margin-left: -15px;
 }
+#map {
+    background-size: cover;
+    width: 100vw;
+    margin:auto;
+    padding-bottom: 15%;
+    padding-top: 15%;
+    min-height: inherit;
+    color: floralwhite;
+    text-align: center;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .row{
     margin-right: -15px;
     margin-left: -15px;
