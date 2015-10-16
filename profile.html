@@ -37,26 +37,39 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body onload="decorate()">
 
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
-
+          
         <div class="cover-container">
 
           <div class="masthead clearfix">
             <div class="inner">
               <h1 class="masthead-brand">Hike</h1>
+                
               <nav>
+                  
                 <ul class="nav masthead-nav">
+                  <li>
+                    <div class="form-group">
+                      <input id = "searchEmail" type="text" class="form-control" placeholder="Search">
+                    </div>
+                      
+                  </li>
+                  <li>
+                    <a><span class="glyphicon glyphicon-search" id="searchEmailButton" aria-hidden = "true"</span></a>
+                  </li>
                   <li class="active"><a href="#">Home</a></li>
                   <li><a href="#">Search</a></li>
                   <li><a href="#">Help</a></li>
                   <li><a href="settings.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+                  
                 </ul>
               </nav>
             </div>
+              
           </div>
 
           </div>   
@@ -163,7 +176,7 @@
     <script>
         var thing = sessionStorage.getItem("userData");
         console.log("dude bro " + thing);
-        decorate();
+        //decorate();
         function decorate(){
             var basicRef = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/basic");
             basicRef.on("value", function(snapshot) {
@@ -181,6 +194,40 @@
                 }
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
+            });
+        }
+        $( "#searchEmailButton" ).click(function() {
+            var email = $("#searchEmail").val();
+            console.log("in searchEmailButton");
+            console.log("email is " + email);
+            find(email);
+        });
+        function find(mail){
+            console.log("in findmail");
+            console.log("mail is " + mail);
+            var ref = new Firebase("https://testapp31415.firebaseio.com/users");
+            ref.once("value", function(snapshot) {
+              snapshot.forEach(function(childSnapshot) {
+                var key = childSnapshot.key();
+                var childData = childSnapshot.val();
+                var emailRef = new Firebase("https://testapp31415.firebaseio.com/users/"+key+"/basic");
+                var email;
+                emailRef.on("value", function(snapshot) {
+                      //console.log(snapshot.val());
+                        var val = snapshot.val();
+                        email = val.email;
+                        console.log(email);
+                        if(email == mail){
+                            console.log("match");
+                            sessionStorage.userData = key;
+                            location.reload();
+                        }
+                    }, function (errorObject) {
+                      console.log("The read failed: " + errorObject.code);
+                    });
+               
+                
+              });
             });
         }
     </script>
