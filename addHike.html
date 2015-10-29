@@ -29,6 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
     <style>
         body {
@@ -60,6 +61,14 @@
       <label for="zip">Hike location (by zipcode):</label>
       <input type="text" class="form-control" id="zip" placeholder="97219" maxlength=5>
     </div>
+    <div class="form-group"> 
+      <label for="start">Start Address:</label>
+      <input type="text" class="form-control" id="start" placeholder="Your Starting Address here">
+    </div> 
+    <div class="form-group"> 
+      <label for="end">End Address:</label>
+      <input type="text" class="form-control" id="end" placeholder="Your Ending Address here">
+    </div> 
     <div class="form-group">
        <label for="type">Type of Hike:</label>
        <select class="form-control" id="type">
@@ -80,8 +89,9 @@
     </div>
     <div class="form-group"> 
       <button type="button" class="btn btn-primary" onclick="newHike()">Submit</button>
+      <button type="button" class="btn btn-default" onclick="initMap()">Render Route</button>
       <button type="button" class="btn btn-default" onclick="home()">Cancel</button>
-    </div>
+    </div> 
   </form>
   
 </div>
@@ -113,9 +123,9 @@
             });
             hikeData = newHike.key();
             console.log("hikeData: " + hikeData);
-            userRef.child("hikes").child(hikeData).set({
-              type: "leader"
-            });
+           // userRef.child("hikes").child(hikeData).set({
+            //  type: "leader"
+            //});
             home();
         }
         function home(){
@@ -132,8 +142,8 @@
     <script>
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: {lat: -24.345, lng: 134.46}  // Australia.
+    zoom: 14,
+    center: {lat: 45.5200, lng:  -122.6819},
   });
 
   var directionsService = new google.maps.DirectionsService;
@@ -146,9 +156,13 @@ function initMap() {
   directionsDisplay.addListener('directions_changed', function() {
     computeTotalDistance(directionsDisplay.getDirections());
   });
-
-  displayRoute('11548 sw 37th ave', '1151 SW Vermont St, Portland, OR 97219', directionsService,
-      directionsDisplay);
+  var start=$("#start").val();
+  var end=$("#end").val();
+  String(start);
+  String(end);
+  console.log(start);
+  console.log(end);
+  displayRoute(start,end,directionsService,directionsDisplay);
 }
 
 function displayRoute(origin, destination, service, display) {
@@ -156,7 +170,7 @@ function displayRoute(origin, destination, service, display) {
     origin: origin,
     destination: destination,
     //waypoints: [{location: 'Cocklebiddy, WA'}, {location: 'Broken Hill, NSW'}],
-    travelMode: google.maps.TravelMode.DRIVING,
+    travelMode: google.maps.TravelMode.WALKING,
     avoidTolls: true
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
