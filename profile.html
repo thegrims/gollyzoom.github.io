@@ -174,7 +174,7 @@
 
       </div>
     <script>
-        var thing = sessionStorage.getItem("userData");
+        var thing = sessionStorage.getItem("userViewerData");
         console.log("dude bro " + thing);
         //decorate();
         function decorate(){
@@ -219,7 +219,7 @@
                         console.log(email);
                         if(email == mail){
                             console.log("match");
-                            sessionStorage.userData = key;
+                            sessionStorage.userViewerData = key;
                             location.reload();
                         }
                     }, function (errorObject) {
