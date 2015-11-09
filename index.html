@@ -57,7 +57,7 @@
                 if (error=="Error: The specified email address is already in use.")
                 {
                     console.log("blag");
-                    $("#danger").show();
+                    $(".alert").show();
                 }
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
@@ -86,6 +86,17 @@
              //window.location.replace("profile.html?username=" + userData);
              window.location.href="profile.html?" + secret;
          }
+        
+         //google analytics tracking code
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-69869995-1', 'auto');
+          ga('send', 'pageview');
+
+
     </script>
 
 </head>
@@ -180,10 +191,10 @@
         <input class="form-control input-lg" type="text" maxlength="50" class="form-control" id="password" placeholder="Your Password Here" required>
        
         <a href="#" onclick="accessInfo()" class="btn btn-primary  btn-block input-block-level">Sign up today</a>
-        <div class="alert alert-danger" id="danger" role="alert">
+        <div class="alert alert-danger" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        Enter a valid email address
+        You already have an account
         </div>
     
         <hr class="featurette-divider">
