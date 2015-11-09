@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Join Hiker Today</title>
-    
+    </span><title>Join Hiker Today </title>
+    <link rel="shortcut icon" href="img/favicon.jpg" type="image/jpg">
     <!--<link rel="icon" href="../../favicon.ico">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -32,6 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
+        $("#danger").hide();
         var ref = new Firebase("https://testapp31415.firebaseio.com");
         var userData; //data.uid
 
@@ -53,6 +54,11 @@
                 console.log("Error creating user:", error);
                 $("#information").addClass("has-error");
                 $("#information2").addClass("has-error");
+                if (error=="Error: The specified email address is already in use.")
+                {
+                    console.log("blag");
+                    $("#danger").show();
+                }
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 create(userData.uid,username);
@@ -174,6 +180,11 @@
         <input class="form-control input-lg" type="text" maxlength="50" class="form-control" id="password" placeholder="Your Password Here" required>
        
         <a href="#" onclick="accessInfo()" class="btn btn-primary  btn-block input-block-level">Sign up today</a>
+        <div class="alert alert-danger" id="danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Enter a valid email address
+        </div>
     
         <hr class="featurette-divider">
         <!-- Footer -->
@@ -188,12 +199,7 @@
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>\
-    
     
 
 </body>
