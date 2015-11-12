@@ -117,7 +117,7 @@
                   <th>Zip Code</th>
                   <th>Trail</th>
                   <th>Difficulty</th>
-                  <th>comments</th> 
+                  <!--<th>comments</th>-->
                 </tr>
               </thead>
               <tbody>
@@ -196,7 +196,7 @@
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
             //states.push(hikeNode.state);
-            $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leaderName + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>' + hikeNode.comment + '</td><td></tr>');    
+            $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leaderName + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);    
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
