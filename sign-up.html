@@ -144,66 +144,6 @@
             $("#username").val('');
             $("#password").val('');
         }
-            //var usersRef = ref.child("users")
-            //var usernameRef = usersRef.child(userData);
-            //var basicRef = usernameRef.child("basicInfo");
-            /*usernameRef.update({
-                "skills":{  
-                }
-            });*/
-            //var newRef = new Firebase("https://brouze.firebaseio.com/users/" + userData);
-            //var classRef = usernameRef.child("skills");
-            /*newRef.child("skills").child(category).set({
-                pay: pay,
-                grade: grade,
-                year: year,
-                teacher: teacher,
-                comment: comment,
-                AP: AP,
-                SAT: SAT,
-                ACT: ACT
-            });*/
-            /*ref.child("users").child(userId).set({
-                basicInfo:{
-                    provider: dataProvider,
-                    name: data.google.displayName,
-                    profilepic: data.google.profileImageURL
-                }*/
-            /*if(category == "AB Calculus"){
-                 classRef.update({
-                           "AB Calculus":{  
-                              "pay": pay,
-                              "grade": grade,
-                              "year": year,
-                              "teacher": teacher,
-                              "comment":comment     
-                           }
-                    });
-            }
-             else if(category == "BC Calculus"){
-                 classRef.update({
-                           "BC Calculus":{  
-                              "pay": pay,
-                              "grade": grade,
-                              "year": year,
-                              "teacher": teacher,
-                              "comment":comment     
-                           }
-                    });
-            }*/
-            /*var temp = classRef.push({
-                          "class":category,
-                          "pay": pay,
-                          "grade": grade,
-                          "year": year,
-                          "teacher": teacher,
-                          "comment":comment     
-                    
-            });*/
-            //classRef.child(temp).set(category);
-            //redirect();
-       // }
-        
          function redirect() {
              var secret = "username=" + userData + "&pageOwner="+userData;
              secret = btoa(secret);

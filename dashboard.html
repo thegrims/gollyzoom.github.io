@@ -7,9 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>My Hikes</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 
     <!-- Bootstrap core CSS -->
     <link href = "bootstrap-3.3.5-dist/css/bootstrap.min.css"rel="stylesheet">
@@ -50,7 +50,6 @@
             <li><a href="addHike.html">New Hike</a></li>
             <li><a href="settings.html">Settings</a></li>
             <li><a href="profile.html">Profile</a></li>
-            <li><a href="carousel.html">Carousel</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -117,7 +116,7 @@
                   <th>Zip Code</th>
                   <th>Trail</th>
                   <th>Difficulty</th>
-                  <th>comments</th> 
+                  <!--<th>comments</th>-->
                 </tr>
               </thead>
               <tbody>
@@ -196,7 +195,7 @@
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
             //states.push(hikeNode.state);
-            $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leaderName + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>' + hikeNode.comment + '</td><td></tr>');    
+            $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leaderName + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);    
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
