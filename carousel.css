@@ -1,16 +1,80 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
+.slick-initialized .slick-slide {
+    display: block;
+}
 
 body {
   padding-bottom: 40px;
-  color: #5a5a5a;
+  background-image: url(img/snow-landscape-nature-sky.jpeg);
+  /*color: #5a5a5a;
+  background-color: aqua;*/
   /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
+}
+
+#title {
+    width: 100%;
+    background-color: none;
+    color:navajowhite;
+    font-size: 6em;
+    text-align: center;
+}
+
+#title h1 {
+    font-family:'Lobster', cursive;
+    font-size: .5em;
+    text-align: center;
 }
 
 #carousel{
     width:auto;
     height: auto;
+}
+
+
+.mini-profile {
+    width: auto;
+    font-family:'Libre Baskerville', serif;
+    background-image:url(img/wood-texture-640x925.jpg);
+   /* box-shadow: 0 0 2px 5px rgb(255,255,255);*/
+    
+    border: 2px solid rgb(255,255,255);
+    border-radius: 25px;
+    position: relative;
+    margin-top: 20px;
+    /*padding: 1% 1% 1% 1%;
+    vertical-align: middle;
+    /*border-radius:10px;*/
+}
+
+.mini-profile h2 {
+    color:floralwhite;
+    font-size: 3em;
+    text-align: center;
+}
+
+.mini-profile h3 {
+    margin-top: -2%;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-align: center;
+    color: floralwhite;
+}
+
+.mini-profile h4 {
+    font-size: 1.2em;
+    font-weight: 400;
+    text-align: center;
+    color: floralwhite;
+}
+
+#mini-pic {
+    /*margin-left: 8%;*/
+    margin: 0px;
+    align-content: center;
+    border-radius: 100%;
+    width: 15vw;
 }
 
 /* CUSTOMIZE THE NAVBAR

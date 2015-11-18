@@ -212,12 +212,12 @@ td {
 
 .mini-profile {
     width: auto;
-    background-color: rgba(143,36,0,.8);
-    box-shadow: 0 0 2px 5px rgba(143,36,0,.8);
+    background-image:url(img/wood-texture-640x925.jpg);
+    box-shadow: 0 0 2px 5px rgb(255,255,255);
     position: relative;
     margin-top: 20px;
     padding: 2% 6% 2% 4%;
-    border-radius:10px;
+    /*border-radius:10px;*/
 }
 
 .mini-profile h2 {
