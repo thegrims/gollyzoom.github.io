@@ -7,7 +7,7 @@
 
 body {
   padding-bottom: 40px;
-  background-image: url(img/snow-landscape-nature-sky.jpeg);
+  background-image: url(img/foggy-trees.jpeg);
   /*color: #5a5a5a;
   background-color: aqua;*/
   /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
@@ -25,14 +25,31 @@ body {
     font-family:'Lobster', cursive;
     font-size: .5em;
     text-align: center;
+    color:black;
+    background-color: snow;
 }
 
 #carousel{
     width:auto;
     height: auto;
 }
-
-
+.filter h2{
+    color: aliceblue;
+}
+.filter {
+    width: auto;
+    font-family:'Libre Baskerville', serif;
+    background-image:url(img/summer-garden-dinner-eating.jpg);
+   /* box-shadow: 0 0 2px 5px rgb(255,255,255);*/
+    
+    border: 2px solid rgb(255,255,255);
+    border-radius: 25px;
+    position: relative;
+    margin-top: 20px;
+    /*padding: 1% 1% 1% 1%;
+    vertical-align: middle;
+    /*border-radius:10px;*/
+}
 .mini-profile {
     width: auto;
     font-family:'Libre Baskerville', serif;
