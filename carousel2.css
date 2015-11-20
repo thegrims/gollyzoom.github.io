@@ -89,7 +89,7 @@ body {
 #mini-pic {
     /*margin-left: 8%;*/
     margin: 0px;
-    align-content: center;
+    /*align-content: center;*/
     border-radius: 100%;
     width: 15vw;
 }
