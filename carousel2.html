@@ -39,7 +39,32 @@ $('.hikes').slick({
     slidesToShow: 3,
     slidesToScroll: 3,
     dots: true,
-    edgeFriction: 0
+    edgeFriction: 0,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+    }
+    }
+  ]
 });
 </script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -86,7 +111,7 @@ $('.hikes').slick({
                 var leader = currentUser.leaderName;
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
-                $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img class="img-responsive" src="img/pexels-photo%20(3).jpeg" id="mini-pic" style="margin-right:0;margin-left:150"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
                 //apply_click(miniKey,results);
             });
         }
