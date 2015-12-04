@@ -169,7 +169,7 @@
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
 
-            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body">'+hikeNode.leaderName+hikeNode.comment+'</div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>leader name: '+hikeNode.leaderName+'</p><h4>'+hikeNode.comment+'</h4></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
             /*$('a').on('click',function(){
             var status = $(this).attr('id')
             console.log(status+'this is status');
