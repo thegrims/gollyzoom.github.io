@@ -13,9 +13,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href = "bootstrap-3.3.5-dist/css/bootstrap.min.css"rel="stylesheet">
-    
+      
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      
     <script src="Chart.js-master/src/Chart.Core.js"></script>
     <script src="Chart.js-master/src/Chart.Doughnut.js"></script>
+      
     <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 
     <!-- Custom styles for this template -->
@@ -43,8 +48,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Hkr</a>
+          <a class="navbar-brand" href="#">Hiker</a>
         </div>
+        <!--
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="addHike.html">New Hike</a></li>
@@ -55,11 +61,12 @@
             <input type="text" class="form-control" placeholder="Search...">
           </form>
         </div>
+        -->
       </div>
     </nav>
     
         <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
-          <h1 class="page-header">Hike Data</h1>
+          <h1 class="page-header">Hike Now</h1>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -76,7 +83,7 @@
             </div>
           </div>
           <h2 class="sub-header">Current Hikes</h2>
-          <div class="table-responsive">
+          <!--<div class="table-responsive">
             <table class="table table-striped" id="canHikeTable">
               <thead>
                 <tr>
@@ -85,18 +92,62 @@
                   <th>Zip Code</th>
                   <th>Trail</th>
                   <th>Difficulty</th>
-                  <!--<th>comments</th>-->
+                  <th>comments</th>
                 </tr>
               </thead>
               <tbody>
                 
               </tbody>
             </table>
-          </div>
+          </div>-->
+            <div class="panel-group" id="accordion">
+              <!--<div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"></a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat.</div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                    Collapsible Group 2</a>
+                  </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat.</div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                    Collapsible Group 3</a>
+                  </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat.</div>
+                </div>
+              </div>-->
+            </div>
         </div>
       </div>
     </div>
     <script>
+        var coll=4;
         function searchHike()
         {
             var states = new Array();
@@ -109,19 +160,23 @@
                 var key = childSnapshot.key();
                 specificHike(key);
               });
-              //for (index = 0; index < states.length; index++) 
-              //{
-              //      console.log(states[index]);
-              //}
             });
         }
-        function specificHike(key/*,states*/)
+        function specificHike(key)
         {
+            
             var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
-            //states.push(hikeNode.state);
-            $('#canHikeTable tr:last').after('<tr><td id=leader>' + hikeNode.leaderName + '</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);    
+
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body">'+hikeNode.leaderName+hikeNode.comment+'</div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            /*$('a').on('click',function(){
+            var status = $(this).attr('id')
+            console.log(status+'this is status');
+            $(".panel-body").collapse('toggle');
+            });*/
+            coll++;
+            
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
