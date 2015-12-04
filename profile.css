@@ -70,6 +70,7 @@ h5{
 }
 #info {
     background-size: cover;
+    background-image: url(img/night-camera-lens-map.jpg);
     width: 100vw;
     margin:auto;
     padding-bottom: 15%;
