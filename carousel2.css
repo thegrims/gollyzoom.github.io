@@ -7,7 +7,7 @@
 
 body {
   padding-bottom: 40px;
-  background-image: url(img/forest.jpg);
+  background-image: url(img/night-camera-lens-map.jpg);
   /*color: #5a5a5a;
   background-color: aqua;*/
   /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
@@ -82,7 +82,7 @@ label{
 .mini-profile {
     width: auto;
     font-family:'Libre Baskerville', serif;
-    background-image:url(img/wood-texture-640x925.jpg);
+    background-color:#00ace6;
    /* box-shadow: 0 0 2px 5px rgb(255,255,255);*/
     
     border: 2px solid rgb(255,255,255);
