@@ -62,6 +62,7 @@ $('.hikes').slick({
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1
+    
     }
     }
   ]
@@ -80,24 +81,68 @@ $('.hikes').slick({
         console.log("hey we are here");
         /*$('.hikes').slick({
         });*/
-        $('.hikes').slick('slickAdd','<div class="container filter"><div class="col"><div class="col-md-12"><h2>Filter</h2><h3></h3><h2></h2><h3></h3><h4></h4></div></div></div>');
+        $('.hikes').slick('slickAdd','<div class="container filter"><div class="col"><div class="col-md-12"><h2>Filter</h2><h3></h3><h2></h2><h3></h3><h4></h4><div class="form-group"><label>Zipcode:</label> <input type="text" class="form-control" id="zipcode" maxlength="5"></div><div class="form-group"><label for="state">State:</label><select class="form-control" id="state"><option></option><option>Oregon</option><option>Washington</option><option>Idaho</option><option>Utah</option><option>Ohio</option><option>Pennsylvania</option><option>California</option></select></div><div class="form-group"><label for="hike-type">Hike Difficulty:</label><select class="form-control" id="hike-type"><option></option><option>Light</option><option>Medium</option><option>Difficult</option><option>Extreme</option></select></div><button type="button" class="btn btn-primary" id="filter-button">Filter</button><button type="button" class="btn btn-primary" id="clear-button">Clear</button></div></div></div>'); 
+        slideIndex++;
+         $("#filter-button").on('click', function(){
+                console.log("in filter button function");
+                var status = $(this).attr('id');
+                var zip = $('#zipcode').val();
+                var state = $('#state').val();
+                var hikeType = $('#hike-type').val();
+                console.log(zip);
+                console.log("status" + status);
+                applyFilter(zip,state,hikeType);
+                    
+        });
+        $("#clear-button").on('click', function(){
+                console.log("in filter clear function");
+                var status = $(this).attr('id');
+                $('#zipcode').val('');
+                $('#state').val('');
+                $('#hike-type').val('');
+                applyFilter('','','');
+                    
+        });
+        function applyFilter(zip,state,hikeType){
+            var i = 0;
+            console.log("we are in the apply filter thing");
+            console.log(slideIndex);
+            for(i = slideIndex - 1;i > 0;i--){
+                $('.hikes').slick('slickRemove',i);
+            }
+            slideIndex = 1;
+            countHike(zip,state,hikeType);
+        }
+                            
         console.log("we are about to do the thing");
-        countHike();
+        countHike('','','');
     };
     
+    
         //countHike();
-       function countHike(){
+       function countHike(zip,state,hikeType){
            console.log("we are working on it");
             var ref = new Firebase("https://testapp31415.firebaseio.com/hikes");
             ref.once("value", function(snapshot) {
               // The callback function will get called twice, once for "fred" and once for "barney"
               snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key();
-                  addMini(key);
+                var childData = childSnapshot.val();
+                console.log(childData.type + " vs " + hikeType);
+                console.log(childData.state + " vs " + state);
+                if((state == '') || (childData.state == state)){
+                    if((zip == '') || (childData.zip == zip)){
+                        if((hikeType == '') || (childData.type == hikeType)){
+                            addMini(key);
+                        }
+                    }
+                }
               });
             });
         }
+        function applyFilter(zip,state,hikeType){
             
+        }
         function addMini(miniKey){
             //console.log("xox 4");
             var ref = new Firebase("https://testapp31415.firebaseio.com/hikes/" + miniKey);
@@ -112,6 +157,7 @@ $('.hikes').slick({
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
                 $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                slideIndex++;
                 //apply_click(miniKey,results);
             });
         }
