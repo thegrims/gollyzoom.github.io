@@ -56,6 +56,7 @@ h5{
     font-size: 30px;
 }
 #list {
+    
     background-color:#00ace6; 
     background-size: cover;
     width: 100vw;
@@ -69,7 +70,7 @@ h5{
     margin-left: -15px;
     text-shadow: none;
 }
-#splash {
+#splash {   
     background-color:#00ace6; 
     background-size: cover;
     width: 100vw;
@@ -118,6 +119,7 @@ div{
     color: black;
 }
 .sub-header{
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
     margin-left: 5em;
 }
 .panel-heading, 
