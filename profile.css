@@ -60,8 +60,8 @@ h5{
     background-size: cover;
     width: 100vw;
     margin:auto;
-    padding-bottom: 10%;
-    padding-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
     min-height: inherit;
     color: floralwhite;
     text-align: left;
@@ -74,7 +74,7 @@ h5{
     background-size: cover;
     width: 100vw;
     margin:auto;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
     padding-top: 15%;
     min-height: inherit;
     color: floralwhite;
@@ -116,6 +116,9 @@ div{
 }
 .panel-body{
     color: black;
+}
+.sub-header{
+    margin-left: 5em;
 }
 .panel-heading, 
 a:focus, 
