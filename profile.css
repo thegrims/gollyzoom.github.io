@@ -13,7 +13,7 @@ a:hover {
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
-  color: #fff;
+  /*color: #fff;*/
   text-shadow: none; /* Prevent inheritence from `body` */
   background-color: #fff;
   border: 1px solid #fff;
@@ -50,14 +50,13 @@ h4{
     text-align:left;
     font-size: 30;
     color: black;
-}
+}*/
 h5{
-    font-family: 'Arvo', cursive;
     color: black;
     text-align: left;
     font-size: 30px;
 }
-*/
+
 #splash {
     background-color:#00ace6; 
     background-size: cover;
@@ -103,7 +102,18 @@ h5{
 div{
     display: block;
 }
-
+.panel-body{
+    color: black;
+}
+.panel-heading, 
+a:focus, 
+a:hover {
+    color: white;
+}
+#accordion{
+    margin-left: 10em;
+    margin-right: 10em;
+}
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
@@ -275,4 +285,5 @@ div{
   .cover-container {
     width: 700px;
   }
+    
 }
