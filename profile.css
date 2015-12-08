@@ -44,19 +44,31 @@ h3{
     font-family: 'Architects Daughter', cursive;
     text-align: center;
 }
-
+*/
 h4{
-    font-family: 'Architects Daughter', bold;
     text-align:left;
     font-size: 30;
     color: black;
-}*/
+}
 h5{
     color: black;
     text-align: left;
     font-size: 30px;
 }
-
+#list {
+    background-color:#00ace6; 
+    background-size: cover;
+    width: 100vw;
+    margin:auto;
+    padding-bottom: 10%;
+    padding-top: 10%;
+    min-height: inherit;
+    color: floralwhite;
+    text-align: left;
+    margin-right: -15px;
+    margin-left: -15px;
+    text-shadow: none;
+}
 #splash {
     background-color:#00ace6; 
     background-size: cover;
