@@ -53,7 +53,7 @@ body {
 .mini-profile {
     width: auto;
     font-family:'Libre Baskerville', serif;
-    background-image:url(img/wood-texture-640x925.jpg);
+    background-color:#00ace6;
    /* box-shadow: 0 0 2px 5px rgb(255,255,255);*/
     
     border: 2px solid rgb(255,255,255);

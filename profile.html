@@ -9,9 +9,12 @@
     <meta name="author" content="">
       
     <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Libre+Baskerville' rel='stylesheet' type='text/css'>
+    
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <title>Profile</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/png">
@@ -20,7 +23,6 @@
     <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter|Libre+Baskerville|Arvo' rel='stylesheet' type='text/css'>
     <link href="profile.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -32,7 +34,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body onload="decorate()">
+  <body onload="decorate(),searchHike()">
 
     <div class="site-wrapper">
 
@@ -67,7 +69,8 @@
               
           </div>
 
-          </div>   
+          </div>
+  
         <div class="container-fluid">
             <div id="splash" class="row">
                 <div class="col-md-12">
@@ -91,16 +94,15 @@
                         <h3>See your hikes</h3>
                     </a>
                 </div>
-                <!--<h1>
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    <b>Find hikes in your area.</b>
-                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                </h1>-->
                 
-                <!--<h2>Find tutors in your area</h2>
-                <a id="learn" type="button" class="btn btn-default btn-lg" href="#info"><b>FIND OUT MORE</b></a>-->
-
             </div>
+        </div>
+        <div class="container-fluid">
+        <div class="row">
+        <!--<h2 class="sub-header">Current Hikes</h2>-->
+        <div class="panel-group" id="accordion">
+        </div>
+        </div>
         </div>
         <!-- google maps map container -->
         <div class="container-fluid">
@@ -136,35 +138,15 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UjvGISTt2Ag7TwvlWwrNcXv80k94t74&callback=initMap">
         </script>
         
-            <!--<h1>Teach or be taught</h1>
-            <hr>
-            <p>At <b>Brouze</b>, our mission is to make it easier for those who need academic help. With our website, students can look up tutors by school or area code. This allows students to be taught by tutors who have experienced the same courses and teachers.</p>
-
-            <button type="button" class="btn btn-default btn-lg" onclick = "authenticate()">
-                <b>SIGN UP</b>
-            </button>
-
-            <div id="books" class="row">
-                <img src="img/books-top.png" class="img-responsive">
-            </div>-->
             
-            
-            
-            
-          <!--<div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-          </div>-->
-
           <div class="mastfoot">
             <div class="inner">
               <!--<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
             </div>
           </div>
-
+           
+        <div class="panel-group" id="accordion">
+        </div>
         </div>
 
       </div>
@@ -223,6 +205,40 @@
                
                 
               });
+            });
+        }
+        var coll=4;
+        function searchHike()
+        {
+            var states = new Array();
+            var userId = sessionStorage.getItem("userData");
+            var ref = new Firebase("https://testapp31415.firebaseio.com/users/"+userId+"/hikes");
+            ref.once("value", function(snapshot) {
+              
+              snapshot.forEach(function(childSnapshot) 
+              {
+                var key = childSnapshot.key();
+                specificHike(key);
+              });
+            });
+        }
+        function specificHike(key)
+        {
+            
+            var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
+            hikeRef.on("value", function(snapshot) {
+            var hikeNode = (snapshot.val());
+
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            /*$('a').on('click',function(){
+            var status = $(this).attr('id')
+            console.log(status+'this is status');
+            $(".panel-body").collapse('toggle');
+            });*/
+            coll++;
+            
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
             });
         }
     </script>
