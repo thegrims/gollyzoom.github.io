@@ -4,7 +4,12 @@
 .slick-initialized .slick-slide {
     display: block;
 }
-
+.glyphicon-heart, .empty{
+    color: black;
+}
+.glyphicon-heart, .full{
+    color:red;
+}
 body {
   padding-bottom: 40px;
   background-image: url(img/night-camera-lens-map.jpg);
@@ -56,7 +61,13 @@ label{
     background-color: snow;
 }
 
-
+#title h2{
+    font-family:'Lobster', cursive;
+    font-size: .3em;
+    text-align: center;
+    color:darkolivegreen;
+    background-color: snow;
+}
 
 #carousel{
     width:auto;

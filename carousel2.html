@@ -20,14 +20,18 @@
 <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
 
 <link href = "bootstrap-3.3.5-dist/css/bootstrap.min.css"rel="stylesheet">
-    
+  
 </head>
 <body onload="slideSetUp()">
-    <div id="title" class="container">
+<div id="title" class="container">
         <div class="row">
+            <h2><a href="profile.html">Profile</a></h2>
             <h1>Hikes</h1>
+            <h2><a href="addHike.html">Create</a></h2>
         </div>
     </div>
+    
+    
 <!-- here is my slick slide-->
     
 <div class="slider hikes">
@@ -128,8 +132,8 @@ $('.hikes').slick({
               snapshot.forEach(function(childSnapshot) {
                 var key = childSnapshot.key();
                 var childData = childSnapshot.val();
-                console.log(childData.type + " vs " + hikeType);
-                console.log(childData.state + " vs " + state);
+                //console.log(childData.type + " vs " + hikeType);
+                //console.log(childData.state + " vs " + state);
                 if((state == '') || (childData.state == state)){
                     if((zip == '') || (childData.zip == zip)){
                         if((hikeType == '') || (childData.type == hikeType)){
@@ -156,11 +160,48 @@ $('.hikes').slick({
                 var leader = currentUser.leaderName;
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
-                $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
                 slideIndex++;
+                
+                 $("#" + miniKey).on('click', function(){
+                    var status = $(this).attr('id')
+                    console.log(status);
+                    addHike(status);
+                    checkFave(miniKey,'false');
+                });
                 //apply_click(miniKey,results);
             });
         }
+    function addHike(hikeKey){
+        var ref = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/hikes");
+        var b;
+        ref.once("value", function(snapshot){
+            b = snapshot.child(hikeKey).exists();
+            listUpdate(b);
+        });
+        function listUpdate (seen){
+        console.log("b is " + seen);
+        if(seen == false){
+            ref.child(hikeKey).set({
+                  type: "follower"
+            });
+        }
+        }
+    }
+    function checkFave(hikeKey,toggle){
+        if(toggle == 'false'){
+            var ref = new Firebase("https://testapp31415.firebaseio.com/users/" + thing + "/hikes");
+            var liked;
+            ref.once("value", function(snapshot){
+                liked = snapshot.child(hikeKey).exists();
+                if(liked == true){
+                    $('#'+hikeKey+' span').addClass('full');
+                    $('#'+hikeKey+' span').removeClass('empty');
+                }
+                //listUpdate(b);
+            });
+        }
+    }
 </script>
 </body>
 
