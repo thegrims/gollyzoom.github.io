@@ -26,7 +26,7 @@ h2,
 h3,
 h4,
 p{
-    color: antiquewhite;
+    color: #fff;
 }
 .form-control{
     background-color:black;
@@ -35,7 +35,7 @@ p{
     font-family: Lora;
 }
 label{
-    color: antiquewhite;
+    color:#fff;
 }
 .topnav {
     font-size: 14px;
@@ -59,7 +59,7 @@ label{
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    
     background-size: cover;
 }
 
@@ -78,7 +78,7 @@ label{
 .intro-divider {
     width: 400px;
     border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #00ace6 /*rgba(0, 0, 0, 0.2);*/
 }
 
 .intro-message > h3 {
@@ -133,12 +133,7 @@ label{
     border-top: 3px solid #e7e7e7;
 }
 
-.banner {
-    padding: 100px 0;
-    color: #f8f8f8;
-    background: url(../img/banner-bg.jpg) no-repeat center center;
-    background-size: cover;
-}
+
 
 .banner h2 {
     margin: 0;
@@ -191,16 +186,7 @@ body {
     margin-top: 50px;
 }
 
-#splash {
-    background: url(../img/calculator.jpg) no-repeat center center;
-    background-size: cover;
-    width: 100vw;
-    padding-bottom: 15%;
-    padding-top: 15%;
-    min-height: inherit;
-    color: floralwhite;
-    text-align: center;
-}
+
 
 #splash h1 {
     font-size: 8vw;
@@ -239,7 +225,7 @@ body {
 }
 
 #info hr {
-    border: 1px solid black;
+    border: 1px solid #00ace6;
     width: 60vw;
 }
 
@@ -326,7 +312,7 @@ font-size: 1.2em;
 }
 
  .navbar {
-    background: rgba(255,255,255,0.7);
+    background:#00ace6; /*rgba(255,255,255,0.7);*/
   }
 html, body {
         height: 100%;
