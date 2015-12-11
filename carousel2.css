@@ -4,11 +4,12 @@
 .slick-initialized .slick-slide {
     display: block;
 }
-.glyphicon-heart, .empty{
-    color: black;
-}
-.glyphicon-heart, .full{
+
+.full{
     color:red;
+}
+.empty{
+    color: black;
 }
 body {
   padding-bottom: 40px;

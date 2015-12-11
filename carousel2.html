@@ -160,14 +160,14 @@ $('.hikes').slick({
                 var leader = currentUser.leaderName;
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
-                $('.hikes').slick('slickAdd','<div class="container mini-profile"  id='+miniKey+'><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                $('.hikes').slick('slickAdd','<div class="container mini-profile"><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
                 slideIndex++;
-                
+                checkFave(miniKey,'false');
                  $("#" + miniKey).on('click', function(){
                     var status = $(this).attr('id')
                     console.log(status);
                     addHike(status);
-                    checkFave(miniKey,'false');
+                    
                 });
                 //apply_click(miniKey,results);
             });
@@ -179,7 +179,7 @@ $('.hikes').slick({
             b = snapshot.child(hikeKey).exists();
             listUpdate(b);
         });
-        function listUpdate (seen){
+        function listUpdate(seen){
         console.log("b is " + seen);
         if(seen == false){
             ref.child(hikeKey).set({
@@ -194,9 +194,9 @@ $('.hikes').slick({
             var liked;
             ref.once("value", function(snapshot){
                 liked = snapshot.child(hikeKey).exists();
-                if(liked == true){
-                    $('#'+hikeKey+' span').addClass('full');
-                    $('#'+hikeKey+' span').removeClass('empty');
+                console.log("do we like it? " + liked );
+                if(liked === true){
+                    $('#'+hikeKey+' span').removeClass("empty").addClass("full");
                 }
                 //listUpdate(b);
             });
