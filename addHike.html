@@ -71,20 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="container">
     <div class="row">
         <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
+            
     </div>
 </div>
     
@@ -92,6 +79,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <h2>Create a Hike</h2>
   <p>To add a hike, fill in the form below.</p>
   <form role="form" onsubmit="accessInfo()" id="address">
+    <div class="form-group">
+        <label for="start">Time and Date:</label>
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+        </script>
     <div class="form-group" id="locationField"> 
       <label for="start">Hike Start Address:</label>
       <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"onFocus="geolocate()" type="text"></input>
@@ -124,7 +125,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="form-group"> 
       <button type="button" class="btn btn-primary" onclick="newHike()">Submit</button>
-      <button type="button" class="btn btn-default" onclick="initMap()">Render Route</button>
       <button type="button" class="btn btn-default" onclick="home()">Cancel</button>
     </div> 
   </form>
