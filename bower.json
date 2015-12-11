@@ -1,0 +1,31 @@
+{
+  "name": "bower",
+  "authors": [
+    "thegrims <grimshawaidan@gmail.com>"
+  ],
+  "description": "bower file for hiker",
+  "main": "bower",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "install"
+  ],
+  "license": "MIT",
+  "homepage": "gollyzoom.github.io",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
+  }
+}
