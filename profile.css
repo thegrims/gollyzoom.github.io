@@ -259,6 +259,17 @@ a:hover {
     padding-bottom: 0px;
     font-size: 1em;
 }
+.glyphicon-trash{
+    padding-left: 1em;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1.5em;
+    
+}
+.glyphicon-trash:hover{
+    color: red;
+}
 #profilePic{
     border-radius: 100%;
     /*max-height: 10em;*/

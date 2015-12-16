@@ -212,7 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               });
             });
         }
-        var coll=4;
+        var coll=0;
         function searchHike()
         {
             var states = new Array();
@@ -234,17 +234,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
 
-            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
-            /*$('a').on('click',function(){
-            var status = $(this).attr('id')
-            console.log(status+'this is status');
-            $(".panel-body").collapse('toggle');
-            });*/
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span id = '+key+' class="glyphicon glyphicon-trash" aria-hidden="true"></span><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            $('.glyphicon-trash').on('click',function(){
+                    var status = $(this).attr('id');
+                    console.log(status+' this is status');
+                    formalDelete(status);
+                });
             coll++;
             
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
+        }
+        function formalDelete(key){
+            var deleteRef = new Firebase("https://testapp31415.firebaseio.com/users/"+thing+"/hikes/"+key);
+            deleteRef.on("value", function(snap) {
+                var deleteNode = (snap.val());
+                console.log(deleteNode.type);
+                if(deleteNode.type == "follower"){
+                    deleteRef.remove();
+                    location.reload();
+                    //refresh();
+                }
+            });
+        }
+        function refresh(){
+            var i = 0;
+            for(i = 0; i < coll;i++){
+                $("#accordion").last().remove();
+            }
+            coll = 0;
+            console.log("about to call search hike");
+            searchHike();
         }
     </script>
     <!-- Bootstrap core JavaScript
