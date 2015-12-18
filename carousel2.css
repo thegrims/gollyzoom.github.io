@@ -97,7 +97,8 @@ label{
     background-color:#00ace6;
    /* box-shadow: 0 0 2px 5px rgb(255,255,255);*/
     
-    border: 2px solid rgb(255,255,255);
+    border: 5px solid rgba(255,255,255,0);
+    
     border-radius: 25px;
     position: relative;
     margin-top: 20px;
@@ -126,7 +127,11 @@ label{
     text-align: center;
     color: floralwhite;
 }
-
+.slick-slide img {
+    border: 0px solid #FFF;
+    display: block;
+    width: 100%;
+}
 #mini-pic {
     /*margin-left: 8%;*/
     /*margin: 0px;
