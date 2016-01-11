@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <title>Add a hike</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="addHike.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:700|Inconsolata' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+   <!-- ... -->
+  <script type="text/javascript" src="/bower_components/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+  
+    
+    <style>
+        body {
+            margin-left: 8vw;
+            margin-right: 8vw;
+            width: auto;
+        }
+        
+         #bg{
+            margin-bottom: 7vw;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 2%
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W59W9W"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59W9W');</script>
+<!-- End Google Tag Manager -->
+    
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            
+    </div>
+</div>
+    
+<div id="bg" class="container" id="address">
+  <h2>Create a Hike</h2>
+  <p>To add a hike, fill in the form below.</p>
+  <form role="form" onsubmit="accessInfo()" id="address">
+    <div class="form-group">
+        <label for="start">Time and Date:</label>
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+        </script>
+    <div class="form-group" id="locationField"> 
+      <label for="start">Hike Start Address:</label>
+      <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"onFocus="geolocate()" type="text"></input>
+    </div>      
+    <div class="form-group">
+      <label for="location">Hike location (by state):</label>
+      <input type="text" class="form-control" id="administrative_area_level_1" placeholder="Oregon">
+    </div>
+    <div class="form-group">
+      <label for="zip">Hike location (by zipcode):</label>
+      <input type="text" class="form-control" id="zip" placeholder="97219" maxlength=5>
+    </div>   
+    <div class="form-group">
+       <label for="type">Type of Hike:</label>
+       <select class="form-control" id="type">
+          <option>Light</option>
+          <option>Moderate</option>
+          <option>Difficult</option>
+          <option>Extreme</option>
+          <option>Other</option>
+       </select>
+    </div>
+    <div class="form-group">
+      <label for="trail">Trail Name:</label>
+      <input type="text" class="form-control" id="trail" placeholder="" >
+    </div>
+    <div class="form-group">
+      <label for="comment">Comments (optional):</label>
+      <textarea class="form-control" rows="5" id="comment" placeholder="Any additional information you would like to share"></textarea>
+    </div>
+    <div class="form-group"> 
+      <button type="button" class="btn btn-primary" onclick="newHike()">Submit</button>
+      <button type="button" class="btn btn-default" onclick="home()">Cancel</button>
+    </div> 
+  </form>
+  
+</div>
+<script>
+        var ref = new Firebase("https://testapp31415.firebaseio.com");
+        var thing = sessionStorage.getItem("userData"); 
+        var name;
+        var thingRef = new Firebase("https://testapp31415.firebaseio.com/users/"+thing+"/basic");
+        thingRef.on("value", function(snapshot) {
+          console.log(snapshot.val());
+          snap = snapshot.val();
+          name = snap.name;
+          console.log(name);
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
+        var hikeRef = ref.child("hikes");
+        var userRef = ref.child("users").child(thing);
+        var hikeData;
+        function newHike(){
+            var newHike = hikeRef.push({
+              leader: thing,
+              leaderName: name,
+              state: $("#administrative_area_level_1").val(),
+              zip: $("#zip").val(),
+              trail: $("#trail").val(),
+              type: $("#type").val(),
+              comment: $("#comment").val(),
+              dateTime: $("#datetimepicker1").val()
+            });
+            hikeData = newHike.key();
+            console.log("hikeData: " + hikeData);
+            userRef.child("hikes").child(hikeData).set({
+              type: "leader"
+            });
+            home();
+        }
+        function home(){
+            window.location.href = "profile.html";
+        }
+</script>
+    
+    <!-- Google Maps Stuff -->
+   <style>
+       /*
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+    /*
+      #locationField, #controls {
+        position: relative;
+        width: 480px;
+      }
+      #autocomplete {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 99%;
+      }
+      .label {
+        text-align: right;
+        font-weight: bold;
+        width: 100px;
+        color: #303030;
+      }
+      #address {
+        border: 1px solid #000090;
+        background-color: #f0f0ff;
+        width: 480px;
+        padding-right: 2px;
+      }
+      #address td {
+        font-size: 10pt;
+      }
+      .field {
+        width: 99%;
+      }
+      .slimField {
+        width: 80px;
+      }
+      .wideField {
+        width: 200px;
+      }
+      #locationField {
+        height: 20px;
+        margin-bottom: 2px;
+      }
+    </style>
+    
+    </div>
+
+    <!--<table id="address">
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number"
+              disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <td class="wideField" colspan="3"><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field"
+              id="country" disabled="true"></input></td>
+      </tr>
+    </table>-->
+
+    <script>
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+// [START region_fillform]
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+// [END region_fillform]
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+// [END region_geolocation]
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0UjvGISTt2Ag7TwvlWwrNcXv80k94t74&callback&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
