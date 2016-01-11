@@ -177,14 +177,15 @@ $('.hikes').slick({
         var b;
         ref.once("value", function(snapshot){
             b = snapshot.child(hikeKey).exists();
-            listUpdate(b);
+            listUpdate(b,hikeKey);
         });
-        function listUpdate(seen){
+        function listUpdate(seen,hikeKey){
         console.log("b is " + seen);
         if(seen == false){
             ref.child(hikeKey).set({
                   type: "follower"
             });
+            $('#'+hikeKey+' span').removeClass("empty").addClass("full");
         }
         }
     }

@@ -35,6 +35,12 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 
 }
+h1{
+    font-family:'Lobster', cursive;
+    font-size: 2.4em;
+   /* border-left: 5px;*/
+    /*border-right: 10px;*/
+}
 /*
 h1{
     font-family: 'Libre Baskerville', cursive;
@@ -258,6 +264,17 @@ a:hover {
     padding-top: 0px;
     padding-bottom: 0px;
     font-size: 1em;
+}
+.glyphicon-trash{
+    padding-left: 1em;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1.5em;
+    
+}
+.glyphicon-trash:hover{
+    color: red;
 }
 #profilePic{
     border-radius: 100%;
