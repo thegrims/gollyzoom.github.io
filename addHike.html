@@ -37,6 +37,14 @@
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
   
+  
+<link href="bower_components/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+
+<script src="bower_components/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+<script src="bower_components/bootstrap-fileinput/js/fileinput.min.js" type="text/javascript"></script>
+<!-- bootstrap.js below is only needed if you wish to use the feature of viewing details 
+     of text file preview via modal dialog -->
+
     
     <style>
         body {
@@ -91,6 +99,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             $('#datetimepicker1').datetimepicker();
         });
         </script>
+    <div class="form-group">
+      <label for="trail">Trail Name:</label>
+      <input type="text" class="form-control" id="trail" placeholder="" >
+    </div>
     <div class="form-group" id="locationField"> 
       <label for="start">Hike Start Address:</label>
       <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"onFocus="geolocate()" type="text"></input>
@@ -102,10 +114,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="form-group">
       <label for="zip">Hike Location (by zipcode):</label>
       <input type="text" class="form-control" id="zip" placeholder="97219" maxlength=5>
-    </div> 
+    </div>
     <div class="form-group">
       <label for="link">Hike Map Link</label>
       <input type="text" class="form-control" id="link" placeholder="trailmap.example.com" maxlength=5>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Select Hike Picture to Upload</label>
+      <input id="input-1" type="file" class="file">
     </div>
     <div class="form-group">
        <label for="type">Type of Hike:</label>
@@ -116,10 +132,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <option>Extreme</option>
           <option>Other</option>
        </select>
-    </div>
-    <div class="form-group">
-      <label for="trail">Trail Name:</label>
-      <input type="text" class="form-control" id="trail" placeholder="" >
     </div>
     <div class="form-group">
       <label for="comment">Comments (optional):</label>
