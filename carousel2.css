@@ -2,9 +2,14 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 .slick-initialized .slick-slide {
-    display: block;
+    display:inherit;
+    border-width: thin;
+    border-color: white;
 }
-
+.slick-track{
+width:auto;
+height: auto;
+}
 .full{
     color:red;
 }
@@ -12,8 +17,10 @@
     color: black;
 }
 body {
-  padding-bottom: 40px;
+  /*padding-bottom: 40px;*/
   background-image: url(img/night-camera-lens-map.jpg);
+  width: auto;
+  height: auto;
   /*color: #5a5a5a;
   background-color: aqua;*/
   /*background-image: url(img/nature-sky-sunset-man.jpeg)*/
@@ -126,11 +133,6 @@ label{
     font-weight: 400;
     text-align: center;
     color: floralwhite;
-}
-.slick-slide img {
-    border: 0px solid #FFF;
-    display: block;
-    width: 100%;
 }
 #mini-pic {
     /*margin-left: 8%;*/
