@@ -8,7 +8,15 @@ body {
     font-weight: 400;
     margin-top: 70px;
 }
-
+.tabs-x{
+    
+}
+.tab-content{
+    background-color: black
+}
+p{
+    color: white;
+}
 body,
 h1,
 h2,
@@ -19,7 +27,14 @@ h6 {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
+#words{
+    /*background-color: black;*/
+}
+#pictures{
+    background-color: darkgreen;
+}
 p{
+    font-family: cursive;
     color: ghostwhite;
 }
 h3{
