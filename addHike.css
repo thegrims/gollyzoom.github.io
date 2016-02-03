@@ -10,8 +10,15 @@ body{
     height: 100%;
     overflow-x: hidden;
     font-weight: 400;
+    margin-left: 8vw;
+    margin-right: 8vw;
+    width: auto;
 }
-
+#bg{
+            margin-bottom: 7vw;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 2%
+}
 body,
 h1,
 h2,
