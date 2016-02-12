@@ -234,8 +234,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
-
-            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span id = '+key+' class="glyphicon glyphicon-trash" aria-hidden="true"></span><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p><img src='+hikeNode.picture+'></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            console.log(hikeNode.hikeLink)
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><span id = '+key+' class="glyphicon glyphicon-trash" aria-hidden="true"></span><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p><img src='+hikeNode.hikeLink+'></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
             $('.glyphicon-trash').on('click',function(){
                     var status = $(this).attr('id');
                     console.log(status+' this is status');
