@@ -160,7 +160,7 @@ $('.hikes').slick({
                 var leader = currentUser.leaderName;
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
-                $('.hikes').slick('slickAdd','<div class="container mini-profile"><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><button id = "info" type="button" class="'+miniKey+' btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                $('.hikes').slick('slickAdd','<div class="container mini-profile"><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><button id = "info" type="button" class="'+miniKey+' btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
                 slideIndex++;
                 checkFave(miniKey,'false');
                  $("#" + miniKey).on('click', function(){
@@ -169,7 +169,7 @@ $('.hikes').slick({
                     addHike(status);
                     
                 });
-                 $("#info").on('click', function(){
+                 $("."+miniKey).on('click', function(){
                     console.log("in filter button function");
                     var status = $(this).attr('class');
                     var newStat = status.replace(" btn btn-default", "");

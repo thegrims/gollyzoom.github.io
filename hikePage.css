@@ -9,16 +9,25 @@ body {
     margin-top: 70px;
 }
 .tabs-x{
-    
 }
 .tab-content{
     background-color: black
 }
 p{
-    color: white;
+    color: ghostwhite;
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+    /*ackground-color: darkgreen;*/
 }
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: darkgreen;
+    text-decoration: none;
+}
+
 body,
-h1,
 h2,
 h3,
 h4,
@@ -33,10 +42,7 @@ h6 {
 #pictures{
     background-color: darkgreen;
 }
-p{
-    font-family: cursive;
-    color: ghostwhite;
-}
+
 h3{
     color: ghostwhite;
     font-family:inherit;
