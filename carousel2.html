@@ -158,9 +158,17 @@ $('.hikes').slick({
                 var type = currentUser.type;
                 var comment = currentUser.comment;
                 var leader = currentUser.leaderName;
+                var a = snapshot.child("hikeLink").exists();
+                var srcString;
+                if(a == true){
+                    srcString = currentUser.hikeLink;
+                }
+                else{
+                    srcString = "img/pexels-photo%20(3).jpeg";
+                }
                // checkIfFave(miniKey,username);
                 console.log("i am trying here");
-                $('.hikes').slick('slickAdd','<div class="container mini-profile"><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><button id = "info" type="button" class="'+miniKey+' btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="img/pexels-photo%20(3).jpeg" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
+                $('.hikes').slick('slickAdd','<div class="container mini-profile"><div class="col"><div class="col-md-12"><button id = '+miniKey+' type="button" class="btn btn-default"><span class="glyphicon glyphicon-heart empty"></span></button><button id = "info" type="button" class="'+miniKey+' btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></button><h2>'+trail+'</h2><h3>'+zipcode+'</h3><img se" src="'+srcString+'" class="img-circle" id="mini-pic" align="middle"><h2>'+state+'</h2><h3>'+type+'</h3><h4>'+leader+'</h4></div></div></div>');
                 slideIndex++;
                 checkFave(miniKey,'false');
                  $("#" + miniKey).on('click', function(){
