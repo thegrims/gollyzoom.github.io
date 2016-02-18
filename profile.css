@@ -27,9 +27,8 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #00ace6;
-}
-body {
+  /*background-color: #00ace6;*/
+  background-image: url(img/wood-texture-640x925.jpg);
   color:#fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
