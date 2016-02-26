@@ -15,13 +15,20 @@
     <script src="bower_components/bootstrap-tabs-x/js/bootstrap-tabs-x.min.js" type="text/javascript"></script>  
     <link href="bower_components/bootstrap-tabs-x/css/bootstrap-tabs-x.min.css" media="all" rel="stylesheet" type="text/css" />  
 
-    <link rel="stylesheet" media="all" type="text/css" href="hikePage.css"/>
     <!--<link rel="stylesheet" type="text/css" href="search.css"/> -->
 
     <link rel="stylesheet" type="text/css" href="bower_components/slick-carousel/slick/slick.css"/>
     <script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
+        
+    <!-- Custom styles for this template -->
+    <link href="hikePage.css" rel="stylesheet">
+    <!--<link rel="stylesheet" media = "all" type="text/css" href="hikePage.css"/>
+    
+    <link href = "bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href = "bower_components/bootstrap/dist/css/bootstrap.min.css"rel="stylesheet">
+    
+        
 
     </head>
     <body>
@@ -30,11 +37,12 @@
                 <ul id="myTab-3" class="nav nav-tabs" role="tablist">
                     <!--<li class="active"><a href="#home-3" role="tab" data-toggle="tab">Home</a></li>-->
                     <li class = active><a href="#zero" role="tab-kv" data-toggle="tab">Trail</a></li>
-                    <li><a href="#one" role="tab-kv" data-toggle="tab">Comments</a></li>
+                    <li><a href="#one" role="tab-kv" data-toggle="tab">Description</a></li>
                     <li><a href="#two" role="tab-kv" data-toggle="tab">Hike Leader</a></li>
                     <li><a href="#three" role="tab-kv" data-toggle="tab">State</a></li>
                     <li><a href="#four" role="tab-kv" data-toggle="tab">Hike Difficulty</a></li>
                     <li><a href="#five" role="tab-kv" data-toggle="tab">Zipcode</a></li>
+                    <li><a href="#six" role="tab-kv" data-toggle="tab">Comments</a></li>
                 </ul>
                 <div id="myTabContent-3" class="tab-content">
                     <!--<div class="tab-pane fade in active"><p id = "trail"></p></div>-->
@@ -44,6 +52,12 @@
                     <div class="tab-pane fade" id="three"><p id="state"></p></div>
                     <div class="tab-pane fade" id="four"><p id="type"></p></div>
                     <div class="tab-pane fade" id="five"><p id="zip"></p></div>
+                    <div class="tab-pane fade" id="six"><p id="blog_comment">Leave a Comment</p>
+                        <!--
+                        <textarea class="form-control" rows="5" id="blog" maxlength = "600" placeholder=""></textarea>
+                        <button type="button" class="btn btn-primary">Add Comment</button>
+                        <button type="button" class="btn btn-default">Clear</button>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +78,11 @@
                     $("#state").text(hikeNode.state);
                     $("#zip").text(hikeNode.zip);
                     $("#type").text(hikeNode.type);
+                    var a = snapshot.child("hikeLink").exists();
+                    if(a == true){
+                        var aLink = hikeNode.hikeLink;
+                        $('#pictures').prepend('<img id="hikeImg" src="'+aLink+'" />');
+                    }
                 });
                 /*;*/
             }

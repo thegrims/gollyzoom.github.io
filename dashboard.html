@@ -157,6 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
     </div>
     <script>
+        var thing = sessionStorage.getItem("userViewerData");
         var coll=4;
         function searchHike()
         {
@@ -164,32 +165,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             var userId = sessionStorage.getItem("userData");
             var ref = new Firebase("https://testapp31415.firebaseio.com/users/"+userId+"/hikes");
             ref.once("value", function(snapshot) {
-              
+            var name = getName();
               snapshot.forEach(function(childSnapshot) 
               {
                 var key = childSnapshot.key();
-                specificHike(key);
+                specificHike(key,name);
               });
             });
         }
-        function specificHike(key)
+        function specificHike(key,name)
         {
             
             var hikeRef = new Firebase("https://testapp31415.firebaseio.com/hikes/"+key);
             hikeRef.on("value", function(snapshot) {
             var hikeNode = (snapshot.val());
-
-            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p></div></div></div>'); //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
+            var hikeName = hikeNode.leaderName;
+            $('#accordion').append('<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a id='+coll+' data-toggle="collapse" data-parent="#accordion" href="#collapse'+coll+'">'+hikeNode.trail+'</a></h4></div><div id=collapse'+coll+' class="panel-collapse collapse"><div class="panel-body"><p>Leader Name: '+hikeNode.leaderName+'</p><p>Difficulty: '+hikeNode.type+'</p><p>Description: '+hikeNode.comment+'</p></div></div></div>');
+            
+                                     //'</td><td id=state>' + hikeNode.state + '</td><td id=zip>' + hikeNode.zip + '</td><td id=trail>' + hikeNode.trail + '</td><td id=type>' + hikeNode.type + '</td><td id= comment>'/*+ hikeNode.comment + '</td><td></tr>'*/);
             /*$('a').on('click',function(){
             var status = $(this).attr('id')
             console.log(status+'this is status');
             $(".panel-body").collapse('toggle');
             });*/
+            
             coll++;
             
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
+            
+            function getName(){
+                 var personRef = new Firebase("https://testapp31415.firebaseio.com/users/"+thing+"/basic");
+                 personRef.on("value", function(snapshot) {
+                 var personNode = (snapshot.val());
+                 return personNode.name;
+            
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+            }
         }
     </script>
     <!-- Bootstrap core JavaScript
