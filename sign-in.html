@@ -45,7 +45,7 @@
 
 </head>
 
-<body onload="parseQueryString()" onkeypress="accessInfo()">
+<body onload="parseQueryString()" onkeydown="javascript:return fnIgnoreEnter(event);">
 
     <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W59W9W"
@@ -120,6 +120,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             userData = params["username"];
             //accessInfo(params["username"]);
         };
+        function fnIgnoreEnter(thisEvent)
+        {
+            if(thisEvent.keyCode == 13) // enter key
+            {
+                return false; // do nothing
+            }
+        }
         function accessInfo() {
             console.log("access clicked!!!");
             var username = $("#username").val();
